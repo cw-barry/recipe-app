@@ -17,12 +17,14 @@ const mealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Teatime'];
 const APP_ID = 'fa255c54';
 const APP_KEY = '864a82802664a50366c68f2ca424dad1';
 
-const Recipe = () => {
+const Recipe = ({ isAuth }) => {
   const [query, setQuery] = useState('');
   const [meal, setMeal] = useState(mealTypes[0]);
   const [searchResult, setSearchResult] = useState([]);
 
   const navigate = useNavigate();
+
+  if (!isAuth) navigate('/login');
 
   const searchRecipe = async () => {
     console.log(query);
@@ -57,16 +59,19 @@ const Recipe = () => {
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                   {item.recipe.dishType}- {item.recipe.cuisineType}
                 </CardSubtitle>
-                <Button
-                  style={{ marginTop: '5px' }}
-                  onClick={() => {
-                    navigate('/detail', { state: { recipe: item.recipe } });
-                  }}
-                >
-                  Details
-                </Button>
               </div>
             </CardBody>
+            <div className="text-center">
+              <Button
+                className="align-items-end"
+                style={{ marginTop: '5px' }}
+                onClick={() => {
+                  navigate('/detail', { state: { recipe: item.recipe } });
+                }}
+              >
+                Details
+              </Button>
+            </div>
           </Card>
         ))}
       </CardDeck>

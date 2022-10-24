@@ -2,11 +2,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Router from './Router/Router';
+import { useState } from 'react';
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
   return (
     <div className="App">
-      <Router />
+      <Router {...{ isAuth, setIsAuth }} />
     </div>
   );
 }

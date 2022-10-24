@@ -1,10 +1,11 @@
 import { Form, FormGroup, Label, Input, Button, Container } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setIsAuth }) => {
   let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsAuth(true);
     navigate('/');
   };
   return (

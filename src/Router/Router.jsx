@@ -6,14 +6,14 @@ import Error404 from '../Pages/Error404';
 import AppNavbar from '../Components/AppNavbar';
 import Detail from '../Pages/Detail';
 
-const Router = () => {
+const Router = ({ isAuth, setIsAuth }) => {
   return (
     <BrowserRouter>
       <AppNavbar />
       <Routes>
-        <Route path="/" element={<Recipe />} />
+        <Route path="/" element={<Recipe {...{ isAuth }} />} />
         <Route path="about" element={<About />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login {...{ setIsAuth }} />} />
         <Route path="detail" element={<Detail />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
